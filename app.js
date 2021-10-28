@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.get("/",(request,response) => {
 
-    pool.query('SELECT * FROM branches',(err,res)=> {
+    pool.query('SELECT * FROM branches LIMIT 1000',(err,res)=> {
         if(err) {
             return res.json({error:err.message});
         }
