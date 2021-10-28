@@ -7,6 +7,9 @@ const IP = process.env.IP || "192.168.178.1";
 
 app.use(express.json());
 
+app.get("/",(req,res) => {
+    res.json({success:true,app:"working"});
+})
 app.get("/hello", (request,response) => {
     response.status(200).json({
         success:true,
