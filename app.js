@@ -7,15 +7,20 @@ const IP = process.env.IP || "192.168.178.1";
 
 app.use(express.json());
 
-app.get("/",(req,res) => {
-    res.json({success:true,app:"working"});
-})
-app.get("/hello", (request,response) => {
-    response.status(200).json({
-        success:true,
-        message:"Hello there!"
+app.get("/",(request,response) => {
+    pool.query('SELECT * FROM branches',(err,res)=> {
+        if(err) {
+            return res.json({error:err.message});
+        }
+        res.json({
+            success: true,
+            res
+        })
     });
-});
+})
+// app.get("/api/branches/autocomplete?", (request,response) => {
+
+// })
 
 app.listen(PORT,() => {
     console.log(`Listening on http://${IP}:${PORT}`);
