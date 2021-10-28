@@ -2,9 +2,10 @@
   "name": "bank-search-api",
   "version": "1.0.0",
   "description": "Fetching the data of the bank with address, ifsc etc. ",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node app.js",
     "configure":"./bin/configuredb.sh"
   },
   "author": "kartik prajapat",
