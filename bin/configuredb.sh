@@ -1,12 +1,12 @@
 #!/bin/bash
 
-database="dei6idbs84gtrc"
+database="bank_branch"
 
 echo "Configuring database: $database" 
 
-dropdb -U sclkahwpyexxye dei6idbs84gtrc 
-createdb -U sclkahwpyexxye dei6idbs84gtrc 
+dropdb -U root bank_branch 
+createdb -U root bank_branch 
 
-psql -U sclkahwpyexxye dei6idbs84gtrc < ./sql/branches.sql 
+psql -U root bank_branch < ./sql/branches.sql 
 
 echo "$database configured"
