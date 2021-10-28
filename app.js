@@ -9,16 +9,16 @@ app.use(express.json());
 
 app.get("/",(request,response) => {
 
-    // pool.query('SELECT * FROM branches',(err,res)=> {
-    //     if(err) {
-    //         return res.json({error:err.message});
-    //     }
-    //     res.json({
-    //         success: true,
-    //         res
-    //     })
-    // });
-    res.send("hello");
+    pool.query('SELECT * FROM branches',(err,res)=> {
+        if(err) {
+            return res.json({error:err.message});
+        }
+        response.json({
+            success: true,
+            res
+        })
+    });
+    // response.send("hello");
 });
 // app.get("/api/branches/autocomplete?", (request,response) => {
 
