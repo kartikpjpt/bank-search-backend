@@ -11,7 +11,7 @@ app.get("/",(request,response) => {
 
     pool.query('SELECT * FROM branches LIMIT 1000',(err,result)=> {
         if(err) {
-            return res.json({error:err.message});
+            return result.json({error:err.message});
         }
         response.json({
             success: true,
