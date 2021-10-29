@@ -1,8 +1,9 @@
 # Bank Search Backend
 An app to fetch Bank Name and address of a particular city in INDIA.
 # Using Curl
-1.```sh curl -v http://ec2-3-8-127-3.eu-west-2.compute.amazonaws.com:5000/api/branches/autocomplete?q=jodhpur&limit=3&offset=0 ```\n
-2.```sh curl -v http://ec2-3-8-127-3.eu-west-2.compute.amazonaws.com:5000/api/branches/?q=chennai&limit=3&offset=1 ```
+1.``` curl -v http://ec2-3-8-127-3.eu-west-2.compute.amazonaws.com:5000/api/branches/autocomplete?q=jodhpur&limit=3&offset=0 ```
+
+2.``` curl -v http://ec2-3-8-127-3.eu-west-2.compute.amazonaws.com:5000/api/branches/?q=chennai&limit=3&offset=1 ```
 
 # Technology Used:
 Node.js, Express.js, PostgreSQL, AWS EC2
