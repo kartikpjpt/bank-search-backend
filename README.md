@@ -16,7 +16,9 @@ http://ec2-3-8-127-3.eu-west-2.compute.amazonaws.com:5000/
 # Application has following routes
 ## 1. Autocomplete API to return possible matches based on the branch name ordered by IFSC code (ascending order) with limit and offset.
 a. Endpoint: /api/branches/autocomplete?q=<>
+
 b. Example: /api/branches/autocomplete?q=jodhpur&limit=3&offset=0
+
 c. Sample response:
 ```json
 {
@@ -55,7 +57,9 @@ c. Sample response:
 
 ## 2. Search API to return possible matches across all columns and all rows, ordered by IFSC code (ascending order) with limit and offset.
 a. Endpoint: /api/branches?q=<>
+
 b. Example: /api/branches/?q=chennai&limit=3&offset=1
+
 c. Sample response
 ```json
 {
