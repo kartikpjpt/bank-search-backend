@@ -9,7 +9,9 @@ app.use(express.json());
 app.get("/",(request,response) => {
     response.json({
         success:true,
-        message:"api is working..."
+        message:"api is working...",
+        github:"https://github.com/kartikpjpt/bank-search-backend",
+        
     });
 })
 
