@@ -13,7 +13,7 @@ app.get("/",(request,response) => {
     });
 })
 app.get("/api/branches/autocomplete",(request,response) => {
-    let {q,limit,offset} = req.query;
+    let {q,limit,offset} = request.query;
 
     if(!limit) {
         limit = 10;
