@@ -14,7 +14,16 @@ app.get("/",(request,response) => {
 })
 app.get("/api/branches/autocomplete",(request,response) => {
 
-    const {q,limit,offset} = request.params;
+    let q,limit,offset;
+    if(request.params.q) {
+        q = request.params.q;
+    }
+    if(request.params.limit) {
+        limit = request.params.limit;
+    }
+    if(request.params.offset) {
+        offset = request.params.offset;
+    }
 
     pool.query('SELECT * FROM branches LIMIT 1000',(err,result)=> {
         if(err) {
@@ -22,7 +31,9 @@ app.get("/api/branches/autocomplete",(request,response) => {
         }
         response.json({
             success: true,
-            queries:request.params,
+            a:q,
+            b:limit,
+            c:offset,
             res:result.rows
         })
     });
