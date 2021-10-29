@@ -22,7 +22,20 @@ app.get("/api/branches/autocomplete",(request,response) => {
         offset = 0;
     }
 
-    pool.query(`SELECT * FROM branches LIMIT ${limit}`,(err,result)=> {
+    if(!q) {
+        response.status(400).json({
+            success:false,
+            message:"Please enter the branch name"
+        })
+    }
+
+    pool.query(
+        `SELECT * FROM branches
+    WHERE branch like '%${q}%'
+    ORDER BY ifsc
+    LIMIT ${limit}
+    OFFSET ${offset};`,
+    (err,result)=> {
         if(err) {
             return result.json({error:err.message});
         }
