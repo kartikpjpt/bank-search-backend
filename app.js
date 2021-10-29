@@ -33,7 +33,7 @@ app.get("/api/branches/autocomplete",(request,response) => {
 
     pool.query(
         `SELECT * FROM branches
-    WHERE branch like '%${q.toUpperCase()}%'
+    WHERE branch ILIKE '%${q}%'
     ORDER BY ifsc
     LIMIT ${limit}
     OFFSET ${offset};`,
@@ -68,12 +68,11 @@ app.get("/api/branches", (request,response) => {
 
     pool.query(`
     SELECT * FROM branches as b
-    WHERE   b.ifsc LIKE '%${q}%' OR
-        b.branch LIKE '%${q}%' OR
-        b.address LIKE '%${q}%' OR
-        b.city LIKE '%${q}%' OR
-        b.district LIKE '%${q}%' OR
-        b.state LIKE '%${q}%'
+    WHERE   b.ifsc ILIKE '%${q}%' OR
+        b.address ILIKE '%${q}%' OR
+        b.city ILIKE '%${q}%' OR
+        b.district ILIKE '%${q}%' OR
+        b.state ILIKE '%${q}%'
     ORDER BY ifsc
     LIMIT ${limit}
     OFFSET ${offset};
