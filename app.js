@@ -14,7 +14,7 @@ app.get("/",(request,response) => {
 })
 app.get("/api/branches/autocomplete",(request,response) => {
 
-    const data = request.query;
+    const {q,limit,offset} = request.params;
 
     pool.query('SELECT * FROM branches LIMIT 1000',(err,result)=> {
         if(err) {
