@@ -68,12 +68,12 @@ app.get("/api/branches", (request,response) => {
 
     pool.query(`
     SELECT * FROM branches as b
-    WHERE   b.ifsc LIKE '%${q.toUppercase()}%' OR
-        b.branch LIKE '%${q.toUppercase()}%' OR
-        b.address LIKE '%${q.toUppercase()}%' OR
-        b.city LIKE '%${q.toUppercase()}%' OR
-        b.district LIKE '%${q.toUppercase()}%' OR
-        b.state LIKE '%${q.toUppercase()}%'
+    WHERE   b.ifsc LIKE '%${q}%' OR
+        b.branch LIKE '%${q}%' OR
+        b.address LIKE '%${q}%' OR
+        b.city LIKE '%${q}%' OR
+        b.district LIKE '%${q}%' OR
+        b.state LIKE '%${q}%'
     ORDER BY ifsc
     LIMIT ${limit}
     OFFSET ${offset};
