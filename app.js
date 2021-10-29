@@ -50,7 +50,7 @@ app.get("/api/branches/autocomplete",(request,response) => {
 });
 
 //searchin across all columns and rows in the data
-app.get("/api/branches/", (request,response) => {
+app.get("/api/branches", (request,response) => {
     let {q,limit,offset} = request.query;
 
     if(!limit) {
