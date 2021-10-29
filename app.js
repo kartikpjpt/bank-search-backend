@@ -20,9 +20,9 @@ app.get("/api/branches/autocomplete",(request,response) => {
         }
         response.json({
             success: true,
-            a:request.params.q,
-            b:request.params.limit,
-            c:request.params.offset,
+            a:request.query.q,
+            b:request.query.limit,
+            c:request.query.offset,
             res:result.rows
         })
     });
