@@ -13,7 +13,7 @@ app.get("/",(request,response) => {
         if(err) {
             return res.json({error:err.message});
         }
-        response.json({
+        response.rows.json({
             success: true,
             res
         })
