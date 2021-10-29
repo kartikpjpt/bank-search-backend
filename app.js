@@ -12,6 +12,8 @@ app.get("/",(request,response) => {
         message:"api is working..."
     });
 })
+
+//Searching in the branch name of the data
 app.get("/api/branches/autocomplete",(request,response) => {
     let {q,limit,offset} = request.query;
 
@@ -23,15 +25,15 @@ app.get("/api/branches/autocomplete",(request,response) => {
     }
 
     if(!q) {
-        response.status(400).json({
+        return response.status(400).json({
             success:false,
             message:"Please enter the branch name"
-        })
+        });
     }
 
     pool.query(
         `SELECT * FROM branches
-    WHERE branch like '%${q}%'
+    WHERE branch like '%${q.toUpperCase()}%'
     ORDER BY ifsc
     LIMIT ${limit}
     OFFSET ${offset};`,
@@ -39,17 +41,57 @@ app.get("/api/branches/autocomplete",(request,response) => {
         if(err) {
             return result.json({error:err.message});
         }
-        response.json({
+        response.status(200).json({
             success: true,
-            query_string:request.query,
-            res:result.rows
+            branches:result.rows
         })
     });
     // response.send("hello");
 });
-// app.get("/api/branches/autocomplete?", (request,response) => {
 
-// })
+//searchin across all columns and rows in the data
+app.get("/api/branches/", (request,response) => {
+    let {q,limit,offset} = request.query;
+
+    if(!limit) {
+        limit = 10;
+    }
+    if(!offset) {
+        offset = 0;
+    }
+    if(!q) {
+        return response.status(400).json({
+            success:false,
+            message:"Please enter the branch name"
+        });
+    }
+
+    pool.query(`
+    SELECT * FROM branches as b
+    WHERE   b.ifsc LIKE '%${q.toUppercase()}%' OR
+        b.branch LIKE '%${q.toUppercase()}%' OR
+        b.address LIKE '%${q.toUppercase()}%' OR
+        b.city LIKE '%${q.toUppercase()}%' OR
+        b.district LIKE '%${q.toUppercase()}%' OR
+        b.state LIKE '%${q.toUppercase()}%'
+    ORDER BY ifsc
+    LIMIT ${limit}
+    OFFSET ${offset};
+    `, 
+    (err,result) => {
+        if(err) {
+            return response.status(400).json({
+                success:false,
+                message:err.message
+            });
+        }
+
+        response.status(200).json({
+            success:true,
+            branches:result.rows
+        });
+    });
+});
 
 app.listen(PORT,() => {
     console.log(`Listening on http://${IP}:${PORT}`);
