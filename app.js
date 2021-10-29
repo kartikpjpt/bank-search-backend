@@ -9,13 +9,13 @@ app.use(express.json());
 
 app.get("/",(request,response) => {
 
-    pool.query('SELECT * FROM branches LIMIT 1000',(err,res)=> {
+    pool.query('SELECT * FROM branches LIMIT 1000',(err,result)=> {
         if(err) {
             return res.json({error:err.message});
         }
-        response.rows.json({
+        response.json({
             success: true,
-            res
+            res:result.rows
         })
     });
     // response.send("hello");
